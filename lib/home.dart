@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_sedeerhana/classItem.dart';
+import 'package:project_sedeerhana/classJual.dart';
 import 'package:sqflite/sqflite.dart';
 
 class Home extends StatefulWidget {
@@ -28,8 +30,18 @@ class _HomeState extends State<Home> {
                   'Bisa Jualan Gak?',
                   style: TextStyle(color: Colors.white),
                 )),
-            RaisedButton(child: Text('Data Barang'), onPressed: () {}),
-            RaisedButton(child: Text('Data Penjualan'), onPressed: () {})
+            RaisedButton(
+                child: Text('Data Barang'),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => classItem()));
+                }),
+            RaisedButton(
+                child: Text('Data Penjualan'),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => classJual()));
+                }),
           ],
         ),
       ),
