@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'item.dart';
 
 class inputItem extends StatefulWidget {
+  inputItem(Item item);
+
   @override
   _inputItemState createState() => _inputItemState();
 }
