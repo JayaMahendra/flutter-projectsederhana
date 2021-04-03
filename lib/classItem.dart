@@ -49,14 +49,6 @@ class _classItemState extends State<classItem> {
                         }
                       })))
         ]));
-    // onPressed: () {
-    //   Navigator.push(
-    //       context,
-    //       MaterialPageRoute(
-    //           builder: (context) => inputItem()
-    //                         ));
-    //               })))
-    // ]));
   }
 
   Future<Item> navigateToinputItem(BuildContext context, Item item) async {

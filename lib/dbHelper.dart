@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'item.dart';
+import 'jual.dart';
 
 class DbHelper {
   static DbHelper _dbHelper;
@@ -30,6 +31,12 @@ class DbHelper {
  qty INTEGER
  )
  ''');
+    await db.execute('''
+ CREATE TABLE jual
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ tgl DATETIME,
+ desc TEXT
+ )''');
   }
 
 //select databases
@@ -38,11 +45,21 @@ class DbHelper {
     var mapList = await db.query('item', orderBy: 'nama');
     return mapList;
   }
+   Future<List<Map<String, dynamic>>> selectjual() async {
+    Database db = await this.initDb();
+    var mapList = await db.query('jual', orderBy: 'id');
+    return mapList;
+  }
 
 //create databases
   Future<int> insert(Item object) async {
     Database db = await this.initDb();
     int count = await db.insert('item', object.toMap());
+    return count;
+  }
+  Future<int> insertjual(Jual object) async {
+    Database db = await this.initDb();
+    int count = await db.insert('jual', object.toMap());
     return count;
   }
 
@@ -53,11 +70,22 @@ class DbHelper {
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
   }
+   Future<int> updatejual(Jual object) async {
+    Database db = await this.initDb();
+    int count = await db
+        .update('jual', object.toMap(), where: 'id=?', whereArgs: [object.id]);
+    return count;
+  }
 
 //delete databases
   Future<int> delete(int id) async {
     Database db = await this.initDb();
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
+    return count;
+  }
+  Future<int> deletejual(int id) async {
+    Database db = await this.initDb();
+    int count = await db.delete('jual', where: 'id=?', whereArgs: [id]);
     return count;
   }
 
@@ -69,6 +97,15 @@ class DbHelper {
       itemList.add(Item.fromMap(itemMapList[i]));
     }
     return itemList;
+  }
+  Future<List<Jual>> getJualList() async {
+    var jualMapList = await select();
+    int count = jualMapList.length;
+    List<Jual> jualList = List<Jual>();
+    for (int i = 0; i < count; i++) {
+      jualList.add(Jual.fromMap(jualMapList[i]));
+    }
+    return jualList;
   }
 
   factory DbHelper() {
