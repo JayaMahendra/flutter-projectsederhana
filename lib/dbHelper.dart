@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'item.dart';
 import 'jual.dart';
+import 'package:flutter/material.dart';
 
 class DbHelper {
   static DbHelper _dbHelper;
@@ -45,7 +46,8 @@ class DbHelper {
     var mapList = await db.query('item', orderBy: 'nama');
     return mapList;
   }
-   Future<List<Map<String, dynamic>>> selectjual() async {
+
+  Future<List<Map<String, dynamic>>> selectjual() async {
     Database db = await this.initDb();
     var mapList = await db.query('jual', orderBy: 'id');
     return mapList;
@@ -57,6 +59,7 @@ class DbHelper {
     int count = await db.insert('item', object.toMap());
     return count;
   }
+
   Future<int> insertjual(Jual object) async {
     Database db = await this.initDb();
     int count = await db.insert('jual', object.toMap());
@@ -70,7 +73,8 @@ class DbHelper {
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
   }
-   Future<int> updatejual(Jual object) async {
+
+  Future<int> updatejual(Jual object) async {
     Database db = await this.initDb();
     int count = await db
         .update('jual', object.toMap(), where: 'id=?', whereArgs: [object.id]);
@@ -83,6 +87,7 @@ class DbHelper {
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
     return count;
   }
+
   Future<int> deletejual(int id) async {
     Database db = await this.initDb();
     int count = await db.delete('jual', where: 'id=?', whereArgs: [id]);
@@ -98,6 +103,7 @@ class DbHelper {
     }
     return itemList;
   }
+
   Future<List<Jual>> getJualList() async {
     var jualMapList = await select();
     int count = jualMapList.length;
@@ -120,4 +126,5 @@ class DbHelper {
     }
     return _database;
   }
+
 }
