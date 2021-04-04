@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart'; //utk database
-import 'dbHelper.dart';  //class database
+import 'dbHelper.dart'; //class database
 import 'inputJual.dart';
 import 'jual.dart';
 import 'dart:async';
@@ -42,13 +42,14 @@ class _classJualState extends State<classJual> {
               child: SizedBox(
                   child: RaisedButton(
                       child: Text("Tambah Item"),
+                      color: Colors.yellowAccent[400],
                       onPressed: () async {
-                        var jual = await navigateToinputJual(context, null); 
+                        var jual = await navigateToinputJual(context, null);
                         if (jual != null) {
                           // 2 Panggil Fungsi untuk Insert ke DB
                           int result = await dbHelper.insertjual(jual);
                           if (result > 0) {
-                            updateListViewj();  //update list
+                            updateListViewj(); //update list
                           }
                         }
                       })))
@@ -72,15 +73,14 @@ class _classJualState extends State<classJual> {
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.red,
-                child: Icon(Icons.ad_units),
-              ),
+                  backgroundColor: Colors.yellow,
+                  child: Image.network(
+                      'https://w7.pngwing.com/pngs/445/818/png-transparent-computer-icons-encapsulated-postscript-lightning-icon-angle-triangle-electrical-wires-cable.png')),
               title: Text(jualList[index].tgl.toString()),
-              
+
               // subtitle: Text(jualList[index].desc),
-              subtitle: Text(
-                jualList[index].desc),
-                  // jualList[index].desc != null ? jualList[index].desc : ' '),
+              subtitle: Text(jualList[index].desc),
+              // jualList[index].desc != null ? jualList[index].desc : ' '),
               // title: Text(itemList[index].nama),
               // subtitle: Text(itemList[index].harga.toString() +
               //     '\t\t\t\t stock : ' +
@@ -100,7 +100,7 @@ class _classJualState extends State<classJual> {
                 //4 Panggil Fungsi untuk Edit data
                 var result = await dbHelper.updatejual(jual);
                 if (result > 0) {
-                  updateListViewj();  //update
+                  updateListViewj(); //update
                 }
               },
             ));

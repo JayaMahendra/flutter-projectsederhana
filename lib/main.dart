@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tambahkan Item',
       theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.yellow,
       ),
-      home: Home(), 
+      home: Home(),
     );
   }
 }

@@ -13,34 +13,42 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Bakol Lestrek',
+          'Toko Listrik',
         ),
       ),
-      body: Container(
+      body: Center(
         child: Column(
-          children: [
-            Container(
-                margin: EdgeInsets.all(20),
-                height: 200,
-                width: 500,
-                alignment: Alignment.center,
-                color: Colors.blueGrey[700],
-                child: Text(
-                  'Menjual lestrek kekuatan tinggi',
-                  style: TextStyle(color: Colors.white),
-                )),
-            RaisedButton(
-                child: Text('Data Barang'),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => classItem()));
-                }),
-            RaisedButton(
-                child: Text('Data Penjualan'),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => classJual()));
-                }),
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(30.0),
+              child: Image.network(
+                'https://png.pngtree.com/png-vector/20190329/ourlarge/pngtree-vector-electric-shock-icon-png-image_887050.jpg',
+                width: 200,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+              child: Text('UD. Listrik Terbang'),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                RaisedButton(
+                    child: Text('Data Barang'),
+                    color: Colors.yellowAccent[400],
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => classItem()));
+                    }),
+                RaisedButton(
+                    child: Text('Data Penjualan'),
+                    color: Colors.yellowAccent[400],
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => classJual()));
+                    }),
+              ],
+            )
           ],
         ),
       ),

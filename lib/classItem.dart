@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_sedeerhana/dbHelper.dart';
 import 'package:project_sedeerhana/inputItem.dart';
 import 'item.dart';
-import 'package:sqflite/sqflite.dart';  //untul database
+import 'package:sqflite/sqflite.dart'; //untul database
 
 class classItem extends StatefulWidget {
   @override
@@ -14,7 +14,6 @@ class _classItemState extends State<classItem> {
   DbHelper dbHelper = DbHelper();
   List<Item> itemList;
   var count = 0;
-
 
 //update
   @override
@@ -45,6 +44,7 @@ class _classItemState extends State<classItem> {
               child: SizedBox(
                   child: RaisedButton(
                       child: Text("Tambah Item"),
+                      color: Colors.yellowAccent[400],
                       onPressed: () async {
                         var item = await navigateToinputItem(context, null);
                         if (item != null) {
@@ -75,8 +75,9 @@ class _classItemState extends State<classItem> {
             elevation: 2.0,
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.red,
-                child: Icon(Icons.ad_units),
+                backgroundColor: Colors.yellow,
+                child: Image.network(
+                    'https://w7.pngwing.com/pngs/445/818/png-transparent-computer-icons-encapsulated-postscript-lightning-icon-angle-triangle-electrical-wires-cable.png'),
               ),
               title: Text(itemList[index].nama),
               subtitle: Text(itemList[index].harga.toString() +
