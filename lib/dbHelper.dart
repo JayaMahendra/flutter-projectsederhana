@@ -23,7 +23,6 @@ class DbHelper {
 
   //buat tabel baru dengan nama item
   void _createDb(Database db, int version) async {
-    //database item
     await db.execute('''
  CREATE TABLE item (
  id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,14 +31,13 @@ class DbHelper {
  qty INTEGER
  )
  ''');
-//database jual
+
     await db.execute('''
- CREATE TABLE jual (
- id INTEGER PRIMARY KEY AUTOINCREMENT,
+ CREATE TABLE jual(
+ idj INTEGER PRIMARY KEY AUTOINCREMENT,
  tgl DATETIME,
  desc TEXT
- )
- ''');
+ )''');
   }
 
 //select databases
@@ -48,10 +46,10 @@ class DbHelper {
     var mapList = await db.query('item', orderBy: 'nama');
     return mapList;
   }
-//select jual
+
   Future<List<Map<String, dynamic>>> selectjual() async {
     Database db = await this.initDb();
-    var mapList = await db.query('jual', orderBy: 'tgl');
+    var mapList = await db.query('jual', orderBy: 'idj');
     return mapList;
   }
 
@@ -61,7 +59,7 @@ class DbHelper {
     int count = await db.insert('item', object.toMap());
     return count;
   }
-//create jual
+
   Future<int> insertjual(Jual object) async {
     Database db = await this.initDb();
     int count = await db.insert('jual', object.toMap());
@@ -75,11 +73,11 @@ class DbHelper {
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
   }
-//update jual
+
   Future<int> updatejual(Jual object) async {
     Database db = await this.initDb();
-    int count = await db
-        .update('jual', object.toMap(), where: 'id=?', whereArgs: [object.id]);
+    int count = await db.update('jual', object.toMap(),
+        where: 'idj=?', whereArgs: [object.idj]);
     return count;
   }
 
@@ -89,14 +87,13 @@ class DbHelper {
     int count = await db.delete('item', where: 'id=?', whereArgs: [id]);
     return count;
   }
-//delete jual
-  Future<int> deletejual(int id) async {
+
+  Future<int> deletejual(int idj) async {
     Database db = await this.initDb();
-    int count = await db.delete('jual', where: 'id=?', whereArgs: [id]);
+    int count = await db.delete('jual', where: 'idj=?', whereArgs: [idj]);
     return count;
   }
 
-//get item
   Future<List<Item>> getItemList() async {
     var itemMapList = await select();
     int count = itemMapList.length;
@@ -106,7 +103,7 @@ class DbHelper {
     }
     return itemList;
   }
-//get jual
+
   Future<List<Jual>> getJualList() async {
     var jualMapList = await select();
     int count = jualMapList.length;

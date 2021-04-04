@@ -1,9 +1,9 @@
 class Jual {
-  int _id;
+  int _idj;
   DateTime _tgl;
   String _desc;
 
-  int get id => _id;
+  int get idj => _idj;
 
   String get desc => this._desc;
   set desc(String value) => this._desc = value;
@@ -16,14 +16,14 @@ class Jual {
 
   // konstruktor versi 2: konversi dari Map ke Item
   Jual.fromMap(Map<String, dynamic> map) {
-    this._id = map['id'];
+    this._idj = map['idj'];
     this._tgl = map['tgl'];
     this._desc = map['desc'];
   }
   // konversi dari Item ke Map
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = Map<String, dynamic>();
-    map['id'] = this._id;
+    map['idj'] = this._idj;
     map['tgl'] = tgl;
     map['desc'] = desc;
     return map;

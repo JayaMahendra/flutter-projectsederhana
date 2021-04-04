@@ -79,7 +79,8 @@ class _classJualState extends State<classJual> {
               
               // subtitle: Text(jualList[index].desc),
               subtitle: Text(
-                  jualList[index].desc != null ? jualList[index].desc : ' '),
+                jualList[index].desc),
+                  // jualList[index].desc != null ? jualList[index].desc : ' '),
               // title: Text(itemList[index].nama),
               // subtitle: Text(itemList[index].harga.toString() +
               //     '\t\t\t\t stock : ' +
@@ -88,7 +89,7 @@ class _classJualState extends State<classJual> {
                   child: Icon(Icons.delete),
                   onTap: () async {
                     //3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
-                    var result = await dbHelper.deletejual(jualList[index].id);
+                    var result = await dbHelper.deletejual(jualList[index].idj);
                     if (result > 0) {
                       updateListViewj(); //update
                     }

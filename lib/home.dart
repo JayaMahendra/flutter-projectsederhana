@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_sedeerhana/classItem.dart';
 import 'package:project_sedeerhana/classJual.dart';
-import 'package:sqflite/sqflite.dart';
 
 class Home extends StatefulWidget {
   @override
