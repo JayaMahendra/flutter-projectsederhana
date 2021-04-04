@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'dbHelper.dart';
+import 'package:sqflite/sqflite.dart'; //utk database
+import 'dbHelper.dart';  //class database
 import 'inputJual.dart';
 import 'jual.dart';
-import 'dart:async';    
+import 'dart:async';
+import 'package:intl/intl.dart';
 
 class classJual extends StatefulWidget {
   @override
@@ -16,10 +17,13 @@ class _classJualState extends State<classJual> {
   var count = 0;
 
   @override
-  void initState(){
+
+  //digunakan untuk update
+  void initState() {
     super.initState();
-    updateListView();
-    }
+    updateListViewj();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -31,7 +35,7 @@ class _classJualState extends State<classJual> {
                 })),
         body: Column(children: [
           Expanded(
-            child: createList(),
+            child: createListj(), //membuat list dengan memanggil fungsi tsb
           ),
           Container(
               alignment: Alignment.center,
@@ -39,12 +43,12 @@ class _classJualState extends State<classJual> {
                   child: RaisedButton(
                       child: Text("Tambah Item"),
                       onPressed: () async {
-                        var jual = await navigateToinputJual(context, null);
+                        var jual = await navigateToinputJual(context, null); 
                         if (jual != null) {
                           // 2 Panggil Fungsi untuk Insert ke DB
                           int result = await dbHelper.insertjual(jual);
                           if (result > 0) {
-                            updateListView();
+                            updateListViewj();  //update list
                           }
                         }
                       })))
@@ -59,7 +63,7 @@ class _classJualState extends State<classJual> {
     return result;
   }
 
-  ListView createList() {
+  ListView createListj() {
     return ListView.builder(
       itemCount: count,
       itemBuilder: (BuildContext context, int index) {
@@ -72,14 +76,21 @@ class _classJualState extends State<classJual> {
                 child: Icon(Icons.ad_units),
               ),
               title: Text(jualList[index].tgl.toString()),
-              subtitle: Text(jualList[index].desc),
+              
+              // subtitle: Text(jualList[index].desc),
+              subtitle: Text(
+                  jualList[index].desc != null ? jualList[index].desc : ' '),
+              // title: Text(itemList[index].nama),
+              // subtitle: Text(itemList[index].harga.toString() +
+              //     '\t\t\t\t stock : ' +
+              //     itemList[index].qty.toString()),
               trailing: GestureDetector(
                   child: Icon(Icons.delete),
                   onTap: () async {
                     //3 Panggil Fungsi untuk Delete dari DB berdasarkan Item
                     var result = await dbHelper.deletejual(jualList[index].id);
                     if (result > 0) {
-                      updateListView();
+                      updateListViewj(); //update
                     }
                   }),
               onTap: () async {
@@ -88,7 +99,7 @@ class _classJualState extends State<classJual> {
                 //4 Panggil Fungsi untuk Edit data
                 var result = await dbHelper.updatejual(jual);
                 if (result > 0) {
-                  updateListView();
+                  updateListViewj();  //update
                 }
               },
             ));
@@ -96,8 +107,8 @@ class _classJualState extends State<classJual> {
     );
   }
 
-  //update List item
-  void updateListView() {
+  //update List jual
+  void updateListViewj() {
     final Future<Database> dbFuture = dbHelper.initDb();
     dbFuture.then((database) {
       //TODO 1 Select data dari DB

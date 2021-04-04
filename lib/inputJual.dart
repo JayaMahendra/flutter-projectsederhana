@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'jual.dart';
+import 'package:intl/intl.dart'; //untuk format date picker
+import 'jual.dart'; 
 
 class inputJual extends StatefulWidget {
   inputJual(Jual jual);
@@ -9,54 +9,25 @@ class inputJual extends StatefulWidget {
 }
 
 class _inputJualState extends State<inputJual> {
-  Jual _jual;
-  TextEditingController tglController = TextEditingController();
-  TextEditingController descController = TextEditingController();
+  Jual _jual;  //inisialisasi model
+  TextEditingController tglController = TextEditingController(); //untuk tgl
+  TextEditingController descController = TextEditingController(); //utk description
 
-  
   @override
-  
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             title: Text('Input Data Penjualan'),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios),
+              icon: Icon(Icons.arrow_back_ios), //tombol kembali 
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context); //untuk kembali ke halaman sebelumnya
               },
             )),
-        // ListView(children: <Widget>[
-        //   Text("${selectedDate.toLocal()}".split(' ')[0]),
-        //   SizedBox(
-        //     height: 20.0,
-        //   ),
-        //   RaisedButton(
-        //     onPressed: () => {
-        //       _selectDate(context),
-        //       print(selectedDate.day + selectedDate.month + selectedDate.year)
-        //     },
-        //     child: Text('Pilih Tanggal'),
-        //   ),
-
-        // Padding(
-        //   padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
-        //   child: TextField(
-        //     controller: tglController,
-        //     keyboardType: TextInputType.datetime,
-        //     decoration: InputDecoration(
-        //       labelText: 'Tanggal',
-        //       border: OutlineInputBorder(
-        //         borderRadius: BorderRadius.circular(5.0),
-        //       ),
-        //     ),
-        //     onChanged: (value) {},
-        //   ),
-        // ),
         body: Padding(
             padding: EdgeInsets.all(20.0),
             child: ListView(children: <Widget>[
-              Padding(
+              Padding( //menginputkan time picker
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
                   focusNode: AlwaysDisabledFocusNode(),
@@ -66,12 +37,12 @@ class _inputJualState extends State<inputJual> {
                           borderRadius: BorderRadius.circular(5.0))),
                   controller: tglController,
                   onTap: () {
-                    selectDate(context);
+                    selectDate(context);  //memanggil fungsi selectdat yang ada dibawah
                   },
                   onChanged: (value) {},
                 ),
               ),
-              Padding(
+              Padding(  //menginputkan desscription text field
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
                   controller: descController,
@@ -91,7 +62,7 @@ class _inputJualState extends State<inputJual> {
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: Row(
                   children: <Widget>[
-                    // tombol simpan
+                    // tombol untuk simpan
                     Expanded(
                       child: RaisedButton(
                           color: Theme.of(context).primaryColorDark,
@@ -102,12 +73,12 @@ class _inputJualState extends State<inputJual> {
                           ),
                           onPressed: () {
                             if (_jual == null) {
-                              // tambah data
+                              // menambah data
                               _jual = Jual(
                                   DateTime.tryParse(tglController.toString()),
                                   descController.text);
                             } else {
-                              // ubah data
+                              // mengubah data
                               _jual = Jual(
                                   // DateTime.parse(selectedDate.toString()),
                                   // _jual = Jual(DateTime.parse(tglController.toString()),
@@ -131,7 +102,7 @@ class _inputJualState extends State<inputJual> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pop(context); //kembali ke halaman sebelumnya
                         },
                       ),
                     ),
@@ -160,11 +131,11 @@ class _inputJualState extends State<inputJual> {
     DateTime newSelectedDate = await showDatePicker(
         context: context,
         initialDate: selectedDate != null ? selectedDate : DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2040),
+        firstDate: DateTime(2000), //tanggal diawali pada tahun 2000
+        lastDate: DateTime(2040),  //tanggal diakhir tahun 2040
         builder: (BuildContext context, Widget child) {
-          return Theme(
-            data: ThemeData.dark().copyWith(
+          return Theme(  //warna
+            data: ThemeData.dark().copyWith( 
               colorScheme: ColorScheme.dark(
                 primary: Colors.deepPurple,
                 onPrimary: Colors.white,
@@ -177,10 +148,10 @@ class _inputJualState extends State<inputJual> {
           );
         });
 
-    if (newSelectedDate != null) {
+    if (newSelectedDate != null) {  
       selectedDate = newSelectedDate;
       tglController
-        ..text = DateFormat.yMMMMd().format(selectedDate)
+        ..text = DateFormat.yMMMMd().format(selectedDate)  //format tanggal
         ..selection = TextSelection.fromPosition(TextPosition(
             offset: tglController.text.length,
             affinity: TextAffinity.upstream));

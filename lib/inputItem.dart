@@ -76,7 +76,7 @@ class _inputItemState extends State<inputItem> {
                   },
                 ),
               ),
-               // tombol button
+              // tombol button
               Padding(
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: Row(
@@ -122,7 +122,7 @@ class _inputItemState extends State<inputItem> {
                         ),
                         onPressed: () {
                           Navigator.pop(context);
-                        },                
+                        },
                       ),
                     ),
                   ],

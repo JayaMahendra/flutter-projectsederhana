@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'KasirKU',
+          'Bakol Lestrek',
         ),
       ),
       body: Container(
@@ -27,20 +27,20 @@ class _HomeState extends State<Home> {
                 alignment: Alignment.center,
                 color: Colors.blueGrey[700],
                 child: Text(
-                  'Bisa Jualan Gak?',
+                  'Menjual lestrek kekuatan tinggi',
                   style: TextStyle(color: Colors.white),
                 )),
             RaisedButton(
                 child: Text('Data Barang'),
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => classItem()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => classItem()));
                 }),
             RaisedButton(
                 child: Text('Data Penjualan'),
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => classJual()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => classJual()));
                 }),
           ],
         ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_sedeerhana/dbHelper.dart';
 import 'package:project_sedeerhana/inputItem.dart';
 import 'item.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqflite.dart';  //untul database
 
 class classItem extends StatefulWidget {
   @override
@@ -15,11 +15,14 @@ class _classItemState extends State<classItem> {
   List<Item> itemList;
   var count = 0;
 
+
+//update
   @override
-  void initState(){
+  void initState() {
     super.initState();
     updateListView();
-    }
+  }
+
   Widget build(BuildContext context) {
     if (itemList == null) {
       itemList = List<Item>();
@@ -77,6 +80,7 @@ class _classItemState extends State<classItem> {
               ),
               title: Text(itemList[index].nama),
               subtitle: Text(itemList[index].harga.toString() +
+                  '\t\t\t\t stock : ' +
                   itemList[index].qty.toString()),
               trailing: GestureDetector(
                   child: Icon(Icons.delete),
