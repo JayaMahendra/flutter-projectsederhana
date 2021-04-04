@@ -13,7 +13,9 @@ class _inputJualState extends State<inputJual> {
   TextEditingController tglController = TextEditingController();
   TextEditingController descController = TextEditingController();
 
+  
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -66,9 +68,7 @@ class _inputJualState extends State<inputJual> {
                   onTap: () {
                     selectDate(context);
                   },
-                  onChanged: (value){
-
-                  },
+                  onChanged: (value) {},
                 ),
               ),
               Padding(
@@ -94,30 +94,29 @@ class _inputJualState extends State<inputJual> {
                     // tombol simpan
                     Expanded(
                       child: RaisedButton(
-                        color: Theme.of(context).primaryColorDark,
-                        textColor: Theme.of(context).primaryColorLight,
-                        child: Text(
-                          'Save',
-                          textScaleFactor: 1.5,
-                        ),
-                        onPressed: () {
-                          if (_jual == null) {
-                            // tambah data
-                            _jual = Jual(
-                                DateTime.parse(tglController.toString()),
-                                descController.text);
-                          } else {
-                            // ubah data
-                            _jual = Jual(
-                                // DateTime.parse(selectedDate.toString()),
-                                // _jual = Jual(DateTime.parse(tglController.toString()),
-                                DateTime.parse(tglController.toString()),
-                                descController.text);
-                          }
-                          // kembali ke layar sebelumnya dengan membawa objek jual
-                          Navigator.pop(context, _jual);
-                        },
-                      ),
+                          color: Theme.of(context).primaryColorDark,
+                          textColor: Theme.of(context).primaryColorLight,
+                          child: Text(
+                            'Save',
+                            textScaleFactor: 1.5,
+                          ),
+                          onPressed: () {
+                            if (_jual == null) {
+                              // tambah data
+                              _jual = Jual(
+                                  DateTime.tryParse(tglController.toString()),
+                                  descController.text);
+                            } else {
+                              // ubah data
+                              _jual = Jual(
+                                  // DateTime.parse(selectedDate.toString()),
+                                  // _jual = Jual(DateTime.parse(tglController.toString()),
+                                  DateTime.tryParse(tglController.toString()),
+                                  descController.text);
+                            }
+                            // kembali ke layar sebelumnya dengan membawa objek jual
+                            Navigator.pop(context, _jual);
+                          }),
                     ),
                     Container(
                       width: 5.0,
@@ -181,17 +180,12 @@ class _inputJualState extends State<inputJual> {
     if (newSelectedDate != null) {
       selectedDate = newSelectedDate;
       tglController
-        ..text = DateFormat.yMMMd().format(selectedDate)
+        ..text = DateFormat.yMMMMd().format(selectedDate)
         ..selection = TextSelection.fromPosition(TextPosition(
             offset: tglController.text.length,
             affinity: TextAffinity.upstream));
     }
   }
-
-  // class AlwaysDisabledFocusNode extends FocusNode {
-  //   @override
-  //   bool get hasFocus => false;
-  // }
 }
 
 class AlwaysDisabledFocusNode extends FocusNode {

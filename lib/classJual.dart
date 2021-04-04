@@ -3,6 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dbHelper.dart';
 import 'inputJual.dart';
 import 'jual.dart';
+import 'dart:async';    
 
 class classJual extends StatefulWidget {
   @override
@@ -13,7 +14,12 @@ class _classJualState extends State<classJual> {
   DbHelper dbHelper = DbHelper();
   List<Jual> jualList;
   var count = 0;
+
   @override
+  void initState(){
+    super.initState();
+    updateListView();
+    }
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -105,4 +111,3 @@ class _classJualState extends State<classJual> {
     });
   }
 }
-

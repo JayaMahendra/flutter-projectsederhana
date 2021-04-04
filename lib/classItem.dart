@@ -16,6 +16,10 @@ class _classItemState extends State<classItem> {
   var count = 0;
 
   @override
+  void initState(){
+    super.initState();
+    updateListView();
+    }
   Widget build(BuildContext context) {
     if (itemList == null) {
       itemList = List<Item>();

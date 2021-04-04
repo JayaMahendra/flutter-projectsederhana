@@ -5,7 +5,6 @@ import 'package:path_provider/path_provider.dart';
 import 'item.dart';
 import 'jual.dart';
 
-
 class DbHelper {
   static DbHelper _dbHelper;
   static Database _database;
@@ -32,12 +31,14 @@ class DbHelper {
  qty INTEGER
  )
  ''');
+
     await db.execute('''
- CREATE TABLE jual
+ CREATE TABLE jual (
  id INTEGER PRIMARY KEY AUTOINCREMENT,
  tgl DATETIME,
  desc TEXT
- )''');
+ )
+ ''');
   }
 
 //select databases
@@ -126,5 +127,4 @@ class DbHelper {
     }
     return _database;
   }
-
 }
