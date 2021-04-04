@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'item.dart';
 import 'jual.dart';
-import 'package:flutter/material.dart';
+
 
 class DbHelper {
   static DbHelper _dbHelper;
@@ -49,7 +49,7 @@ class DbHelper {
 
   Future<List<Map<String, dynamic>>> selectjual() async {
     Database db = await this.initDb();
-    var mapList = await db.query('jual', orderBy: 'id');
+    var mapList = await db.query('jual', orderBy: 'tgl');
     return mapList;
   }
 
