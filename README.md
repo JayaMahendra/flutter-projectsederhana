@@ -1,6 +1,7 @@
 # project_sedeerhana
 
 A new Flutter project.
+<img width="219" alt="flutter toko listrik" src="https://user-images.githubusercontent.com/64392550/120653123-9ba99a00-c4aa-11eb-9ef0-49cc8e9dcf97.png">
 
 ## Getting Started
 
