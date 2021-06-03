@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'item.dart';
 
-class inputItem extends StatefulWidget {
-  inputItem(Item item);
-
+class InputItem extends StatefulWidget {
+  final Item item;
+  InputItem(this.item);
   @override
-  _inputItemState createState() => _inputItemState();
+  InputItemState createState() => InputItemState(this.item);
 }
 
-class _inputItemState extends State<inputItem> {
-  Item _item;
+class InputItemState extends State<InputItem> {
+  Item item;
+  InputItemState(this.item);
   TextEditingController namaController = TextEditingController();
   TextEditingController hargaController = TextEditingController();
   TextEditingController qtyController = TextEditingController();
@@ -91,20 +92,20 @@ class _inputItemState extends State<inputItem> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          if (_item == null) {
+                          if (item == null) {
                             // tambah data
-                            _item = Item(
+                            item = Item(
                                 namaController.text,
                                 int.parse(hargaController.text),
                                 int.parse(qtyController.text));
                           } else {
                             // ubah data
-                            _item.nama = namaController.text;
-                            _item.harga = int.parse(hargaController.text);
-                            _item.qty = int.parse(qtyController.text);
+                            item.nama = namaController.text;
+                            item.harga = int.parse(hargaController.text);
+                            item.qty = int.parse(qtyController.text);
                           }
                           // kembali ke layar sebelumnya dengan membawa objek item
-                          Navigator.pop(context, _item);
+                          Navigator.pop(context, item);
                         },
                       ),
                     ),

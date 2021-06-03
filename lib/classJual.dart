@@ -59,7 +59,7 @@ class _classJualState extends State<classJual> {
   Future<Jual> navigateToinputJual(BuildContext context, Jual jual) async {
     var result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) {
-      return inputJual(jual);
+      return InputJual(jual);
     }));
     return result;
   }

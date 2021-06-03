@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project_sedeerhana/dbHelper.dart';
 import 'package:project_sedeerhana/inputItem.dart';
 import 'item.dart';
-import 'package:sqflite/sqflite.dart'; //untul database
+import 'package:sqflite/sqflite.dart'; //untuk database
 
 class classItem extends StatefulWidget {
   @override
@@ -61,7 +61,7 @@ class _classItemState extends State<classItem> {
   Future<Item> navigateToinputItem(BuildContext context, Item item) async {
     var result = await Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext context) {
-      return inputItem(item);
+      return InputItem(item);
     }));
     return result;
   }
@@ -121,3 +121,4 @@ class _classItemState extends State<classItem> {
     });
   }
 }
+

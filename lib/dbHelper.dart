@@ -73,6 +73,7 @@ class DbHelper {
         .update('item', object.toMap(), where: 'id=?', whereArgs: [object.id]);
     return count;
   }
+  
 
   Future<int> updatejual(Jual object) async {
     Database db = await this.initDb();

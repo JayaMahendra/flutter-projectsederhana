@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; //untuk format date picker
-import 'jual.dart'; 
+import 'jual.dart';
 
-class inputJual extends StatefulWidget {
-  inputJual(Jual jual);
+class InputJual extends StatefulWidget {
+  final Jual jual;
+  InputJual(this.jual);
   @override
-  _inputJualState createState() => _inputJualState();
+  InputJualState createState() => InputJualState(this.jual);
 }
 
-class _inputJualState extends State<inputJual> {
-  Jual _jual;  //inisialisasi model
+class InputJualState extends State<InputJual> {
+  Jual jual; //inisialisasi model
+  InputJualState(this.jual);
   TextEditingController tglController = TextEditingController(); //untuk tgl
-  TextEditingController descController = TextEditingController(); //utk description
+  TextEditingController descController =
+      TextEditingController(); //utk description
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class _inputJualState extends State<inputJual> {
         appBar: AppBar(
             title: Text('Input Data Penjualan'),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios), //tombol kembali 
+              icon: Icon(Icons.arrow_back_ios), //tombol kembali
               onPressed: () {
                 Navigator.pop(context); //untuk kembali ke halaman sebelumnya
               },
@@ -27,7 +30,8 @@ class _inputJualState extends State<inputJual> {
         body: Padding(
             padding: EdgeInsets.all(20.0),
             child: ListView(children: <Widget>[
-              Padding( //menginputkan time picker
+              Padding(
+                //menginputkan time picker
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
                   focusNode: AlwaysDisabledFocusNode(),
@@ -37,12 +41,14 @@ class _inputJualState extends State<inputJual> {
                           borderRadius: BorderRadius.circular(5.0))),
                   controller: tglController,
                   onTap: () {
-                    selectDate(context);  //memanggil fungsi selectdat yang ada dibawah
+                    selectDate(
+                        context); //memanggil fungsi selectdat yang ada dibawah
                   },
                   onChanged: (value) {},
                 ),
               ),
-              Padding(  //menginputkan desscription text field
+              Padding(
+                //menginputkan desscription text field
                 padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                 child: TextField(
                   controller: descController,
@@ -72,21 +78,21 @@ class _inputJualState extends State<inputJual> {
                             textScaleFactor: 1.5,
                           ),
                           onPressed: () {
-                            if (_jual == null) {
+                            if (jual == null) {
                               // menambah data
-                              _jual = Jual(
+                              jual = Jual(
                                   DateTime.tryParse(tglController.toString()),
                                   descController.text);
                             } else {
                               // mengubah data
-                              _jual = Jual(
+                              jual = Jual(
                                   // DateTime.parse(selectedDate.toString()),
                                   // _jual = Jual(DateTime.parse(tglController.toString()),
                                   DateTime.tryParse(tglController.toString()),
                                   descController.text);
                             }
                             // kembali ke layar sebelumnya dengan membawa objek jual
-                            Navigator.pop(context, _jual);
+                            Navigator.pop(context, jual);
                           }),
                     ),
                     Container(
@@ -102,7 +108,8 @@ class _inputJualState extends State<inputJual> {
                           textScaleFactor: 1.5,
                         ),
                         onPressed: () {
-                          Navigator.pop(context); //kembali ke halaman sebelumnya
+                          Navigator.pop(
+                              context); //kembali ke halaman sebelumnya
                         },
                       ),
                     ),
@@ -132,10 +139,11 @@ class _inputJualState extends State<inputJual> {
         context: context,
         initialDate: selectedDate != null ? selectedDate : DateTime.now(),
         firstDate: DateTime(2000), //tanggal diawali pada tahun 2000
-        lastDate: DateTime(2040),  //tanggal diakhir tahun 2040
+        lastDate: DateTime(2040), //tanggal diakhir tahun 2040
         builder: (BuildContext context, Widget child) {
-          return Theme(  //warna
-            data: ThemeData.dark().copyWith( 
+          return Theme(
+            //warna
+            data: ThemeData.dark().copyWith(
               colorScheme: ColorScheme.dark(
                 primary: Colors.deepPurple,
                 onPrimary: Colors.white,
@@ -148,10 +156,10 @@ class _inputJualState extends State<inputJual> {
           );
         });
 
-    if (newSelectedDate != null) {  
+    if (newSelectedDate != null) {
       selectedDate = newSelectedDate;
       tglController
-        ..text = DateFormat.yMMMMd().format(selectedDate)  //format tanggal
+        ..text = DateFormat.yMMMMd().format(selectedDate) //format tanggal
         ..selection = TextSelection.fromPosition(TextPosition(
             offset: tglController.text.length,
             affinity: TextAffinity.upstream));
