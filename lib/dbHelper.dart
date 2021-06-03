@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'item.dart';
-import 'jual.dart';
 
 class DbHelper {
   static DbHelper _dbHelper;
@@ -31,13 +30,6 @@ class DbHelper {
  qty INTEGER
  )
  ''');
-
-    await db.execute('''
- CREATE TABLE jual(
- idj INTEGER PRIMARY KEY AUTOINCREMENT,
- tgl DATETIME,
- desc TEXT
- )''');
   }
 
 //select databases
@@ -60,11 +52,7 @@ class DbHelper {
     return count;
   }
 
-  Future<int> insertjual(Jual object) async {
-    Database db = await this.initDb();
-    int count = await db.insert('jual', object.toMap());
-    return count;
-  }
+
 
 //update databases
   Future<int> update(Item object) async {
@@ -75,12 +63,7 @@ class DbHelper {
   }
   
 
-  Future<int> updatejual(Jual object) async {
-    Database db = await this.initDb();
-    int count = await db.update('jual', object.toMap(),
-        where: 'idj=?', whereArgs: [object.idj]);
-    return count;
-  }
+
 
 //delete databases
   Future<int> delete(int id) async {
@@ -89,11 +72,7 @@ class DbHelper {
     return count;
   }
 
-  Future<int> deletejual(int idj) async {
-    Database db = await this.initDb();
-    int count = await db.delete('jual', where: 'idj=?', whereArgs: [idj]);
-    return count;
-  }
+ 
 
   Future<List<Item>> getItemList() async {
     var itemMapList = await select();
@@ -105,15 +84,7 @@ class DbHelper {
     return itemList;
   }
 
-  Future<List<Jual>> getJualList() async {
-    var jualMapList = await select();
-    int count = jualMapList.length;
-    List<Jual> jualList = List<Jual>();
-    for (int i = 0; i < count; i++) {
-      jualList.add(Jual.fromMap(jualMapList[i]));
-    }
-    return jualList;
-  }
+
 
   factory DbHelper() {
     if (_dbHelper == null) {

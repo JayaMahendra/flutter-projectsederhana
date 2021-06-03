@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_sedeerhana/classItem.dart';
-import 'package:project_sedeerhana/classJual.dart';
 import 'depan.dart';
 
 class Home extends StatefulWidget {
@@ -40,13 +39,6 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => classItem()));
-                    }),
-                RaisedButton(
-                    child: Text('Data Penjualan'),
-                    color: Colors.yellowAccent[400],
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => classJual()));
                     }),
               ],
             )
