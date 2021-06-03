@@ -35,7 +35,9 @@ class _classItemState extends State<classItem> {
                 Navigator.pop(context);
               },
             )),
-        body: Column(children: [
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
           Expanded(
             child: createList(),
           ),
