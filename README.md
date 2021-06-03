@@ -2,6 +2,10 @@
 
 A new Flutter project.
 <img width="219" alt="flutter toko listrik" src="https://user-images.githubusercontent.com/64392550/120653123-9ba99a00-c4aa-11eb-9ef0-49cc8e9dcf97.png">
+<img width="233" alt="crud listrik" src="https://user-images.githubusercontent.com/64392550/120655029-7027af00-c4ac-11eb-979d-5cf59a28dd65.png">
+
+
+
 
 ## Getting Started
 
